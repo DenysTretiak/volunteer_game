@@ -1,0 +1,19 @@
+:host {
+  position: absolute;
+  left: 1600px;
+  top: 50px;
+}
+
+span {
+  color: aliceblue;
+  font-size: 20px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
+}

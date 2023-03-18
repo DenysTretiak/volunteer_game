@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Запити спорядження: </h1>
+<div mat-dialog-content>
+  <ul>
+    <li class="cart-list-item">
+      <h3>Назва частини:</h3>
+      <h3>Потрібне спорядження:</h3>
+      <h3>За скільки часу потрібно:</h3>
+    </li>
+    <li *ngFor="let request of data.requests;" class="request-details cart-list-item">
+        <span>{{request.name}}</span>
+        <span>{{request.items}}</span>
+        <span>{{request.time}}</span>
+    </li>
+  </ul>
+</div>

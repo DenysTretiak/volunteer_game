@@ -1,0 +1,27 @@
+<img class="map-container" src="./assets/map.png" width="1818px" height="1000px">
+
+<div class="icon-link" *ngFor="let item of items">
+  <a  (click)="onMapIconClicked(item.tag)">
+    <app-car [item]="item"></app-car>
+  </a>
+
+</div>
+
+<app-monay-rating></app-monay-rating>
+
+<div class="messages-website">
+  <a class="website" (click)="websiteClicked()" >
+    <img src="./assets/website.png" alt="">
+  </a>
+  <a >
+    <img src="./assets/messages.png" alt="">
+  </a>
+</div>
+
+<div class="requests">
+  <a (click)="requestsClicked()" >
+    <img src="./assets/request_icon.png" alt="">
+    <span class="red">{{getRequestsNumber()}}</span>
+  </a>
+</div>
+

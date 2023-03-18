@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Покупка спорядження</h1>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Закрити</button>
+</div>
+<div mat-dialog-content>
+  <h2> Дрони</h2>
+  <ul class = "list">
+        <li *ngFor="let item of dronItems; let i = index">
+          <mat-card class="item-details">
+            <h2 class="title"> {{ item.name }} </h2>
+            <img [src]="item.img" width="128" alt="drone image">
+            <h3>{{'Ціна: ' + item.price}}</h3>
+            <h3>{{'Час: ' + item.time}}</h3>
+            <h3>Кількість:</h3>
+            <input type="number" min="1" max="10" [(ngModel)]="dronItemCount['dronItemCount' + i]"/>
+            <button mat-raised-button (click)="addItemToCart(item, dronItemCount['dronItemCount' + i])">Купити</button>
+          </mat-card>
+        </li>
+  </ul>
+
+  <h2> Тепловізори </h2>
+  <ul class = "list">
+    <li class="list-item" *ngFor="let item of thermalImagers;  let i = index">
+      <mat-card class="item-details">
+        <h2 class="title"> {{ item.name }} </h2>
+        <img [src]="item.img" width="128" alt="drone image">
+        <h3>{{'Ціна: ' + item.price}}</h3>
+        <h3>{{'Час: ' + item.time}}</h3>
+        <h3>Кількість:</h3>
+        <input type="number" min="1" max="10" [(ngModel)]="thermalImagerCount['thermalImagerCount' + i]"/>
+        <button mat-raised-button (click)="addItemToCart(item, thermalImagerCount['thermalImagerCount' + i])">Купити</button>
+      </mat-card>
+    </li>
+  </ul>
+  <h2>Корзина</h2>
+    <ul>
+      <li class="cart-list-item">
+        <h2>Назва:</h2>
+        <h2>Ціна:</h2>
+        <h2>Кількість:</h2>
+        <h2 >Фінальна сумма:</h2>
+      </li>
+      <li *ngFor="let item of cartItems" class="cart-list-item">
+        <h2>{{item.name}}</h2>
+        <h2>{{item.price}}</h2>
+        <h2>{{item.count}}</h2>
+        <h2 class="last-item">{{item.finalSum}}</h2>
+      </li>
+    </ul>
+
+  <button mat-raised-button (click)="submitOrder()">Оформити замовлення</button>
+</div>
+

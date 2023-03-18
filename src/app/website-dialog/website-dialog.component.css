@@ -1,0 +1,32 @@
+.list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+  flex-basis: 22%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.item-details {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.cart-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-list-item h2 {
+  margin-right: 20px;
+}
+
+.cart-list-item .last-item {
+  margin-left: 95px;
+}
