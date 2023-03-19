@@ -43,3 +43,11 @@
   width: 1.6em;
 }
 
+.current-day {
+  color: white;
+  position: absolute;
+  top: 20px;
+  left: 1600px;
+  font-size: 25px;
+}
+

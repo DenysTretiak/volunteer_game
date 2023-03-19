@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {WebsiteDialogComponent} from "../website-dialog/website-dialog.component";
 import {RequestsDialogComponent} from "../requests-dialog/requests-dialog.component";
@@ -10,7 +10,7 @@ import {TemporaryBaseComponent} from "../temporary-base/temporary-base.component
   templateUrl: './map-container.component.html',
   styleUrls: ['./map-container.component.css']
 })
-export class MapContainerComponent {
+export class MapContainerComponent implements OnInit {
     items = [
       {
         url: './assets/car.png',
@@ -52,8 +52,15 @@ export class MapContainerComponent {
     ]
     imageUrl = "url('./assets/ua-04.png')";
     showWebsite: boolean = false;
+    currentDay: number = 1;
 
     constructor(public dialog: MatDialog, private storeService: StoreService) {
+    }
+
+    ngOnInit() {
+      setInterval(() => {
+        this.currentDay += 1;
+      }, 1000 * 180);
     }
 
   websiteClicked() {
