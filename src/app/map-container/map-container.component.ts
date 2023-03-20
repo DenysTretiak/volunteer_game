@@ -4,6 +4,7 @@ import {WebsiteDialogComponent} from "../website-dialog/website-dialog.component
 import {RequestsDialogComponent} from "../requests-dialog/requests-dialog.component";
 import {StoreService} from "../store.service";
 import {TemporaryBaseComponent} from "../temporary-base/temporary-base.component";
+import {DAY_TIME_VALUE} from "../constants";
 
 @Component({
   selector: 'app-map-container',
@@ -60,7 +61,7 @@ export class MapContainerComponent implements OnInit {
     ngOnInit() {
       setInterval(() => {
         this.currentDay += 1;
-      }, 1000 * 180);
+      }, DAY_TIME_VALUE);
     }
 
   websiteClicked() {

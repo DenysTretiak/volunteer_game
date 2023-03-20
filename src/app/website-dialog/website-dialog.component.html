@@ -10,7 +10,7 @@
             <h2 class="title"> {{ item.name }} </h2>
             <img [src]="item.img" width="128" alt="drone image">
             <h3>{{'Ціна: ' + item.price}}</h3>
-            <h3>{{'Час: ' + item.time}}</h3>
+            <h3>{{'Час: ' + item.time + ' днів'}}</h3>
             <h3>Кількість:</h3>
             <input type="number" min="1" max="10" [(ngModel)]="dronItemCount['dronItemCount' + i]"/>
             <button mat-raised-button (click)="addItemToCart(item, dronItemCount['dronItemCount' + i])">Купити</button>
@@ -25,7 +25,7 @@
         <h2 class="title"> {{ item.name }} </h2>
         <img [src]="item.img" width="128" alt="drone image">
         <h3>{{'Ціна: ' + item.price}}</h3>
-        <h3>{{'Час: ' + item.time}}</h3>
+        <h3>{{'Час: ' + item.time + ' днів'}}</h3>
         <h3>Кількість:</h3>
         <input type="number" min="1" max="10" [(ngModel)]="thermalImagerCount['thermalImagerCount' + i]"/>
         <button mat-raised-button (click)="addItemToCart(item, thermalImagerCount['thermalImagerCount' + i])">Купити</button>
