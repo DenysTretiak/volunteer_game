@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="items-count">
+    Кількість товару в машині:
+    <h3> Дронів: {{this.carDrons}}</h3>
+    <h3> Тепловізорів: {{this.carThermalImagers}}</h3>
+  </div>
+
+  <div class="flex">
+    <button mat-raised-button (click)="openLoadCard()">Завантажити товар</button>
+    <button mat-raised-button >Доставити товар</button>
+  </div>
+
+  <div *ngIf="isLoadCardOpen">
+    <mat-card class="load-section">
+      Завантажити  зі складу:
+      <span>{{baseDronCount + ' дрони'}}</span>
+      <span>{{baseThermalImagersCount + ' тепловізори'}}</span>
+      <button mat-raised-button class="load-button" (click)="onLoadButtonClick()">Завантажити</button>
+    </mat-card>
+  </div>
+</div>
+

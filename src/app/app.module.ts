@@ -53,6 +53,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {FormsModule} from "@angular/forms";
 import { RequestsDialogComponent } from './requests-dialog/requests-dialog.component';
 import { TemporaryBaseComponent } from './temporary-base/temporary-base.component';
+import { CarDialogComponent } from './car-dialog/car-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TemporaryBaseComponent } from './temporary-base/temporary-base.componen
     MonayRatingComponent,
     WebsiteDialogComponent,
     RequestsDialogComponent,
-    TemporaryBaseComponent
+    TemporaryBaseComponent,
+    CarDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -28,14 +28,30 @@ export class StoreService {
     },
   ]
 
-  constructor() { }
-
   public money: BehaviorSubject<any> = new BehaviorSubject<any>(187000);
   public rating: BehaviorSubject<any> = new BehaviorSubject<any>(53000);
   public dronsCount: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   public thermalImagerCount: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   public finishedOrders: any[] = [];
   public finishedOrdersCount: BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  public carState: any = new BehaviorSubject({
+    car1: {
+      drons: 0,
+      thermalImagers: 0
+    },
+    car2: {
+      drons: 0,
+      thermalImagers: 0
+    },
+    ownCar1: {
+      drons: 0,
+      thermalImagers: 0
+    },
+    ownCar2: {
+      drons: 0,
+      thermalImagers: 0
+    }
+  })
 
   decreaseMoneySum(amount: number) {
     this.money.next(
@@ -61,7 +77,18 @@ export class StoreService {
     )
   }
 
+  resetItemsCount() {
+    this.dronsCount.next(0);
+    this.thermalImagerCount.next(0);
+  }
+
   addFinishedOrder(order: any) {
     this.finishedOrders.push(order)
+  }
+
+  changeCarState(id: string, items: any) {
+    const carState = this.carState.value;
+    carState[id] = items;
+    this.carState.next(carState);
   }
 }

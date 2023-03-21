@@ -5,6 +5,7 @@ import {RequestsDialogComponent} from "../requests-dialog/requests-dialog.compon
 import {StoreService} from "../store.service";
 import {TemporaryBaseComponent} from "../temporary-base/temporary-base.component";
 import {DAY_TIME_VALUE} from "../constants";
+import {CarDialogComponent} from "../car-dialog/car-dialog.component";
 
 @Component({
   selector: 'app-map-container',
@@ -16,22 +17,30 @@ export class MapContainerComponent implements OnInit {
       {
         url: './assets/car.png',
         top: '315px',
-        left: '315px'
+        left: '315px',
+        type: 'car',
+        id: 'car1'
       },
       {
         url: './assets/car.png',
         top: '408px',
-        left: '520px'
+        left: '520px',
+        type: 'car',
+        id: 'car2'
       },
       {
         url: './assets/own_car.png',
         top: '360px',
-        left: '760px'
+        left: '760px',
+        type: 'car',
+        id:'ownCar1'
       },
       {
         url: './assets/own_car.png',
         top: '310px',
-        left: '620px'
+        left: '620px',
+        type: 'car',
+        id: 'ownCar2'
       },
       {
         url: './assets/central_base.png',
@@ -42,7 +51,7 @@ export class MapContainerComponent implements OnInit {
         url: './assets/temporary_base.png',
         top: '400px',
         left: '235px',
-        tag: 'temporary_base'
+        type: 'temporary_base'
       },
       // {
       //   url: './assets/temporary_base.png',
@@ -89,22 +98,43 @@ export class MapContainerComponent implements OnInit {
     });
   }
 
-  onMapIconClicked(tag: any) {
-      if(tag === 'temporary_base') {
-        this.dialog.open(TemporaryBaseComponent, {
-          position: {
-            top: '200px',
-            left: '400px'
-          },
-          panelClass: 'position',
-          width: '300px',
-          data: {
-            dronsCount: this.storeService.dronsCount.value,
-            thermalImagers: this.storeService.thermalImagerCount.value
-          }
-        });
+  onMapIconClicked(type: any, id: any) {
+      if(type === 'temporary_base') {
+          this.onTemporaryBaseClick();
+      } else if (type === 'car') {
+        this.onCarClick(id);
       }
   }
+
+  onCarClick(id: string) {
+    this.dialog.open(CarDialogComponent, {
+      position: {
+        top: '200px',
+        left: '400px'
+      },
+      panelClass: 'position',
+      width: '500px',
+      data: {
+        id
+      }
+    });
+  }
+
+  onTemporaryBaseClick() {
+      this.dialog.open(TemporaryBaseComponent, {
+        position: {
+          top: '200px',
+          left: '400px'
+        },
+        panelClass: 'position',
+        width: '300px',
+        data: {
+          dronsCount: this.storeService.dronsCount.value,
+          thermalImagers: this.storeService.thermalImagerCount.value
+        }
+      });
+  }
+
 
   getRequests() {
       return this.storeService.requests;

@@ -11,6 +11,8 @@ export class CarComponent {
     finishedOrdersCount: any;
 
     constructor(private storeService: StoreService) {
-        this.storeService.finishedOrdersCount.subscribe(items => this.finishedOrdersCount = items);
+        this.storeService.finishedOrdersCount.subscribe(items => {
+            this.finishedOrdersCount = items
+        });
     }
 }

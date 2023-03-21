@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from "../store.service";
+import {DAY_TIME_VALUE} from "../constants";
 
 @Component({
   selector: 'app-monay-rating',
@@ -17,11 +18,9 @@ export class MonayRatingComponent implements OnInit {
     this.storeService.money.subscribe(money => this.money = money);
     this.storeService.rating.subscribe(rating => this.rating = rating);
     setInterval(() => {
-      this.storeService.money.next(this.money + 100);
-      this.storeService.rating.next(this.rating + 150);
-    }, 1000)
+      this.storeService.rating.next(this.rating + 24);
+      this.storeService.money.next(Math.round(this.money + this.rating * 0.1));
 
-
-
+    }, DAY_TIME_VALUE)
   }
 }

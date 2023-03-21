@@ -1,5 +1,5 @@
 <div [style.top]="item.top" [style.left]="item.left">
   <img id="car" [src]="item.url" alt="" width="50px" >
-  <span *ngIf="item.tag === 'temporary_base'" class="red">{{finishedOrdersCount}}</span>
+  <span *ngIf="item.type === 'temporary_base'" class="red">{{finishedOrdersCount}}</span>
 </div>
 

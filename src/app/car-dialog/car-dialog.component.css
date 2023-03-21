@@ -1,0 +1,25 @@
+.flex {
+  display: flex;
+}
+
+button {
+  margin-right: 20px;
+}
+
+::ng-deep .mdc-button {
+  min-width: auto !important;
+}
+
+.load-button {
+  width: 50%;
+  margin-top: 10px;
+}
+
+.container {
+  padding: 50px;
+}
+
+.load-section {
+  margin: 20px 0;
+  padding: 10px 0;
+}

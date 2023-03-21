@@ -85,33 +85,19 @@ export class WebsiteDialogComponent {
   }
 
   submitOrder() {
-      let orderSum = 0;
-      // let dronsCount = 0;
-      // let thermalImagersCount = 0
+    let orderSum = 0;
     let itemsCount = 0
-      const finishedOrders: any[] = [];
+    const finishedOrders: any[] = [];
 
-      this.cartItems.forEach(item => {
-        orderSum += item.finalSum
+    this.cartItems.forEach(item => {
+      orderSum += item.finalSum
 
-        // if (item.type === 'dron') {
-        //   dronsCount += item.count
-        // } else {
-        //   thermalImagersCount += item.count;
-        // }
-
-        // if (item.type === 'dron') {
-        //   itemsCount += item.count
-        // } else {
-        //   thermalImagersCount += item.count;
-        // }
-
-        finishedOrders.push({
-          type: item.type,
-          count: item.count,
-          time: item.time
-        })
+      finishedOrders.push({
+        type: item.type,
+        count: item.count,
+        time: item.time
       })
+    })
 
       const moneyAmount = this.storeService.money.value;
 
@@ -128,25 +114,14 @@ export class WebsiteDialogComponent {
 
   finishItemsOrder(type: string, count: number, time: number) {
     setTimeout(() => {
-      // this.storeService.increaseThermalImagers(thermalImagersCount);
-      // this.storeService.increaseDrons(dronsCount);
       let finishedOrderText;
-      if(type === 'drons') {
+      if(type === 'dron') {
         this.storeService.increaseDrons(count);
         finishedOrderText = `Було доставлено ${count} дронів`;
       } else {
         this.storeService.increaseThermalImagers(count);
         finishedOrderText = `Було доставлено ${count} тепловізорів`;
       }
-      // let finishedOrderText;
-
-      // if (thermalImagersCount > 0 && dronsCount > 0) {
-      //   finishedOrderText = `Було доставлено ${dronsCount} дронів і ${thermalImagersCount} тепловізорів`;
-      // } else if(thermalImagersCount > 0 && dronsCount === 0) {
-      //   finishedOrderText = `Було доставлено ${thermalImagersCount} тепловізорів`;
-      // } else if(dronsCount > 0 && thermalImagersCount === 0) {
-      //   finishedOrderText = `Було доставлено ${dronsCount} дронів`;
-      // }
 
       this.storeService.addFinishedOrder(finishedOrderText);
       this.storeService.increaseFinishedOrdersCount();
