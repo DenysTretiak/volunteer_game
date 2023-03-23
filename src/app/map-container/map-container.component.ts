@@ -53,12 +53,26 @@ export class MapContainerComponent implements OnInit {
         left: '235px',
         type: 'temporary_base'
       },
-      // {
-      //   url: './assets/temporary_base.png',
-      //   top: '215px',
-      //   left: '335px',
-      //   tag: 'temporary_base'
-      // }
+      {
+        url: './assets/red_request_icon.png',
+        top: '590px',
+        left: '1370px'
+      },
+      {
+        url: './assets/blue_request_icon.png',
+        top: '490px',
+        left: '1340px'
+      },
+      {
+        url: './assets/blue_request_icon.png',
+        top: '315px',
+        left: '1310px'
+      },
+      {
+        url: './assets/blue_request_icon.png',
+        top: '675px',
+        left: '1190px'
+      }
     ]
     imageUrl = "url('./assets/ua-04.png')";
     showWebsite: boolean = false;
