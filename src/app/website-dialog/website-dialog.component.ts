@@ -22,22 +22,22 @@ export class WebsiteDialogComponent {
 
   dronItems = [
     {
-      img: './assets/drone-1.jpg',
-      name: 'Дрон 1',
+      img: './assets/dron_autel.png',
+      name: 'Autel EVO II Pro ',
       price: '20000',
       time: 4,
       type: 'dron'
     },
     {
-      img: './assets/drone-2.jpg',
-      name: 'Дрон 2',
+      img: './assets/dron_autel_with_thermal_imager.png',
+      name: 'Autel EVO II Dual',
       price: '30000',
       time: 2,
       type: 'dron'
     },
     {
-      img: './assets/drone-3.jpg',
-      name: 'Дрон 3',
+      img: './assets/dron_dji.png',
+      name: 'DJI Mavic 2 Zoom',
       price: '10000',
       time: 5,
       type: 'dron'
@@ -46,22 +46,22 @@ export class WebsiteDialogComponent {
 
   thermalImagers = [
     {
-      img: './assets/thermalImager-1.jpg',
-      name: 'Тепловізор 1',
+      img: './assets/imager_helion.png',
+      name: 'Helion 2',
       price: '25000',
       time: 4,
       type: 'thermalImager'
     },
     {
-      img: './assets/thermalImager-2.jpg',
-      name: 'Тепловізор 2',
+      img: './assets/imager_finder.png',
+      name: 'FINDER FL25R',
       price: '35000',
       time: 3,
       type: 'thermalImager'
     },
     {
-      img: './assets/thermalImager-3.jpg',
-      name: 'Тепловізор 3',
+      img: './assets/imager_guide.png',
+      name: 'Guide TrackIR 35',
       price: '10000',
       time: 5,
       type: 'thermalImager'
@@ -126,5 +126,15 @@ export class WebsiteDialogComponent {
       this.storeService.addFinishedOrder(finishedOrderText);
       this.storeService.increaseFinishedOrdersCount();
     }, time * DAY_TIME_VALUE);
+  }
+
+  getAllItemsFinalSum() {
+    let finalSum = 0;
+
+    this.cartItems.forEach((cartItem) => {
+      finalSum += cartItem.finalSum;
+    })
+
+    return finalSum;
   }
 }

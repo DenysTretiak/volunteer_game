@@ -46,6 +46,10 @@
         <h2>{{item.count}}</h2>
         <h2 class="last-item">{{item.finalSum}}</h2>
       </li>
+      <li class="cart-list-item">
+        <h2>Фінальна сумма</h2>
+        <h2 class="last-item">{{getAllItemsFinalSum()}}</h2>
+      </li>
     </ul>
 
   <button mat-raised-button (click)="submitOrder()">Оформити замовлення</button>
