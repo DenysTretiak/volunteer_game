@@ -6,6 +6,7 @@ import {StoreService} from "../store.service";
 import {TemporaryBaseComponent} from "../temporary-base/temporary-base.component";
 import {DAY_TIME_VALUE} from "../constants";
 import {CarDialogComponent} from "../car-dialog/car-dialog.component";
+import {DonatesDialogComponent} from "../donates-dialog/donates-dialog.component";
 
 @Component({
   selector: 'app-map-container',
@@ -96,6 +97,17 @@ export class MapContainerComponent implements OnInit {
         panelClass: 'position',
         width: '1000px',
       });
+  }
+
+  donatesClicked() {
+      this.dialog.open(DonatesDialogComponent, {
+        position: {
+          top: '200px',
+          left: '400px'
+        },
+        panelClass: 'position',
+        width: '1000px',
+      })
   }
 
   requestsClicked() {

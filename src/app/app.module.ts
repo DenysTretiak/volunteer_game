@@ -54,6 +54,7 @@ import {FormsModule} from "@angular/forms";
 import { RequestsDialogComponent } from './requests-dialog/requests-dialog.component';
 import { TemporaryBaseComponent } from './temporary-base/temporary-base.component';
 import { CarDialogComponent } from './car-dialog/car-dialog.component';
+import { DonatesDialogComponent } from './donates-dialog/donates-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CarDialogComponent } from './car-dialog/car-dialog.component';
     WebsiteDialogComponent,
     RequestsDialogComponent,
     TemporaryBaseComponent,
-    CarDialogComponent
+    CarDialogComponent,
+    DonatesDialogComponent
   ],
   imports: [
     BrowserModule,

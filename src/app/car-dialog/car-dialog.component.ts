@@ -35,8 +35,6 @@ export class CarDialogComponent implements OnInit {
 
   onLoadButtonClick() {
     this.isLoadCardOpen = false;
-    // this.carDrons = this.baseDronCount;
-    // this.carThermalImagers = this.baseThermalImagersCount;
     this.storeService.changeCarState(this.data.id, {
       drons: this.baseDronCount,
       thermalImagers: this.baseThermalImagersCount

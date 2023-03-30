@@ -10,7 +10,7 @@
   position: absolute;
   display: flex;
   top: 870px;
-  left: 1600px;
+  left: 1530px;
 }
 
 .website {
@@ -49,5 +49,9 @@
   top: 20px;
   left: 1600px;
   font-size: 25px;
+}
+
+.donate {
+  margin-right: 10px;
 }
 
