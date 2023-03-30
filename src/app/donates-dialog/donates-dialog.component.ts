@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
 export class DonatesDialogComponent {
   funds = [
     {
+      title: 'Загартовані серця',
+      img: './assets/logo_hearts.png',
+      link: 'https://temperedhearts.org/?page_id=66'
+    },
+    {
       title: 'Повернись живим',
       img: './assets/savelife.png',
       link: 'https://savelife.in.ua/donate/'

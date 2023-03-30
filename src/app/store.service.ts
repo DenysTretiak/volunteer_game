@@ -53,6 +53,8 @@ export class StoreService {
     }
   })
 
+  public cityCenters = [];
+
   decreaseMoneySum(amount: number) {
     this.money.next(
       this.money.value - amount
