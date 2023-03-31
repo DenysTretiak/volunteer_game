@@ -19,7 +19,33 @@ button {
   padding: 50px;
 }
 
-.load-section {
+mat-card {
   margin: 20px 0;
-  padding: 10px 0;
+  padding: 10px;
+}
+
+.list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+  flex-basis: 22%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.item-details {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.cart-list-item {
+  display: flex;
+  justify-content: space-between;
 }

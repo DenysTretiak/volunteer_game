@@ -7,7 +7,7 @@
 
   <div class="flex">
     <button mat-raised-button (click)="openLoadCard()">Завантажити товар</button>
-    <button mat-raised-button >Доставити товар</button>
+    <button mat-raised-button (click)="openSendItems()">Доставити товар</button>
   </div>
 
   <div *ngIf="isLoadCardOpen">
@@ -16,6 +16,24 @@
       <span>{{baseDronCount + ' дрони'}}</span>
       <span>{{baseThermalImagersCount + ' тепловізори'}}</span>
       <button mat-raised-button class="load-button" (click)="onLoadButtonClick()">Завантажити</button>
+    </mat-card>
+  </div>
+
+  <div *ngIf="isSendItemsOpen">
+    <mat-card>
+      Відправити товар
+
+      <ul>
+        <li class="cart-list-item">
+          <span>Пункт призначення</span>
+          <span>Час доставки</span>
+        </li>
+        <li *ngFor="let destination of destinations" class="cart-list-item">
+          <span>{{destination.name}}</span>
+          <span>{{destination.time}}</span>
+<!--          <h2>{{item.count}}</h2>-->
+        </li>
+      </ul>
     </mat-card>
   </div>
 </div>

@@ -11,8 +11,10 @@ export class CarDialogComponent implements OnInit {
   carDrons: number = 0;
   carThermalImagers: number = 0;
   isLoadCardOpen = false;
+  isSendItemsOpen = false;
   baseDronCount = 0;
   baseThermalImagersCount = 0;
+  destinations: any;
   constructor(
     private storeService: StoreService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,11 +28,15 @@ export class CarDialogComponent implements OnInit {
       this.carDrons = carState[this.data.id].drons;
       this.carThermalImagers = carState[this.data.id].thermalImagers;
     })
-
+    this.destinations = this.storeService.cityCenters;
   }
 
   openLoadCard() {
     this.isLoadCardOpen = true;
+  }
+
+  openSendItems() {
+    this.isSendItemsOpen = true;
   }
 
   onLoadButtonClick() {

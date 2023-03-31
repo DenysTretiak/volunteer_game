@@ -53,7 +53,30 @@ export class StoreService {
     }
   })
 
-  public cityCenters = [];
+  cityCenters = [
+    {
+      name: 'Kyiv',
+      top: '275px',
+      left: '790px',
+      time: '2 дні'
+    },
+    {
+      name: 'Vinnytsia',
+      top: '275px',
+      left: '640px',
+      time: '1 день'
+    }
+  ]
+  // public cityCenters = {
+  //   kyiv: {
+  //     top: '275px',
+  //     left: '790px'
+  //   },
+  //   vinnytsia: {
+  //     top: '455px',
+  //     left: '640px'
+  //   }
+  // };
 
   decreaseMoneySum(amount: number) {
     this.money.next(
