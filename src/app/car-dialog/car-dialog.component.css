@@ -33,8 +33,13 @@ mat-card {
 
 li {
   list-style: none;
-  flex-basis: 22%;
+  flex-basis: 22%
 }
+
+li span {
+  margin: 0 20px;
+}
+
 
 button {
   margin-top: 10px;
@@ -47,5 +52,6 @@ button {
 
 .cart-list-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  padding: 10px;
 }

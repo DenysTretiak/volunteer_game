@@ -14,35 +14,36 @@ import {DonatesDialogComponent} from "../donates-dialog/donates-dialog.component
   styleUrls: ['./map-container.component.css']
 })
 export class MapContainerComponent implements OnInit {
+    iconsArray: any[] = [];
     items = [
-      {
-        url: './assets/car.png',
-        top: '315px',
-        left: '315px',
-        type: 'car',
-        id: 'car1'
-      },
-      {
-        url: './assets/car.png',
-        top: '408px',
-        left: '520px',
-        type: 'car',
-        id: 'car2'
-      },
-      {
-        url: './assets/own_car.png',
-        top: '360px',
-        left: '760px',
-        type: 'car',
-        id:'ownCar1'
-      },
-      {
-        url: './assets/own_car.png',
-        top: '310px',
-        left: '620px',
-        type: 'car',
-        id: 'ownCar2'
-      },
+//      {
+//        url: './assets/car.png',
+//        top: '315px',
+//        left: '315px',
+//        type: 'car',
+//        id: 'car1'
+//      },
+//      {
+//        url: './assets/car.png',
+//        top: '408px',
+//        left: '520px',
+//        type: 'car',
+//        id: 'car2'
+//      },
+//      {
+//        url: './assets/own_car.png',
+//        top: '360px',
+//        left: '760px',
+//        type: 'car',
+//        id:'ownCar1'
+//      },
+//      {
+//        url: './assets/own_car.png',
+//        top: '310px',
+//        left: '620px',
+//        type: 'car',
+//        id: 'ownCar2'
+//      },
       {
         url: './assets/central_base.png',
         top: '400px',
@@ -76,16 +77,18 @@ export class MapContainerComponent implements OnInit {
       }
     ]
     imageUrl = "url('./assets/ua-04.png')";
-    showWebsite: boolean = false;
     currentDay: number = 1;
 
     constructor(public dialog: MatDialog, private storeService: StoreService) {
+
     }
 
     ngOnInit() {
       setInterval(() => {
         this.currentDay += 1;
       }, DAY_TIME_VALUE);
+
+      this.iconsArray = [...this.items, ...this.storeService.carState]
     }
 
   websiteClicked() {

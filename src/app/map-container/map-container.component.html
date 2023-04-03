@@ -1,6 +1,6 @@
 <img class="map-container" src="./assets/map.png" width="1818px" height="1000px">
 
-<div class="icon-link" *ngFor="let item of items">
+<div class="icon-link" *ngFor="let item of iconsArray">
   <a  (click)="onMapIconClicked(item.type, item.id)">
     <app-car [item]="item"></app-car>
   </a>

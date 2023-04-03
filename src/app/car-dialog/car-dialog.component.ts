@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {StoreService} from "../store.service";
 
@@ -18,16 +18,20 @@ export class CarDialogComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private changeDetectorRef: ChangeDetectorRef,
+    private applicationRef: ApplicationRef
   ) {
   }
 
   ngOnInit() {
     this.storeService.dronsCount.subscribe(dronsCount => this.baseDronCount = dronsCount);
     this.storeService.thermalImagerCount.subscribe(thermalImagersCount => this.baseThermalImagersCount = thermalImagersCount);
-    this.storeService.carState.subscribe((carState: any) => {
-      this.carDrons = carState[this.data.id].drons;
-      this.carThermalImagers = carState[this.data.id].thermalImagers;
-    })
+//    this.storeService.carState.subscribe((carState: any) => {
+//      this.carDrons = carState[this.data.id].drons;
+//      this.carThermalImagers = carState[this.data.id].thermalImagers;
+//    })
+    this.carDrons = this.storeService.carState.find((car: any) => car.id === this.data.id)?.drons;
+    this.carThermalImagers = this.storeService.carState.find((car: any) => car.id === this.data.id)?.thermalImagers;
     this.destinations = this.storeService.cityCenters;
   }
 
@@ -46,5 +50,9 @@ export class CarDialogComponent implements OnInit {
       thermalImagers: this.baseThermalImagersCount
     })
     this.storeService.resetItemsCount();
+  }
+
+  sendCar(destination: any) {
+
   }
 }

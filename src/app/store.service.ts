@@ -34,34 +34,70 @@ export class StoreService {
   public thermalImagerCount: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   public finishedOrders: any[] = [];
   public finishedOrdersCount: BehaviorSubject<any> = new BehaviorSubject<any>(0);
-  public carState: any = new BehaviorSubject({
-    car1: {
+  public carState: any = [
+    {
+      url: './assets/car.png',
       drons: 0,
-      thermalImagers: 0
+      thermalImagers: 0,
+      top: '315px',
+      left: '315px',
+      id: 'car1',
+      type: 'car',
     },
-    car2: {
+    {
+      url: './assets/car.png',
       drons: 0,
-      thermalImagers: 0
+      thermalImagers: 0,
+      top: '408px',
+      left: '520px',
+      type: 'car',
+      id: 'car2'
     },
-    ownCar1: {
-      drons: 0,
-      thermalImagers: 0
-    },
-    ownCar2: {
-      drons: 0,
-      thermalImagers: 0
-    }
-  })
+//    {
+//      drons: 0,
+//      thermalImagers: 0,
+//      id: 'ownCar1'
+//    },
+//    {
+//      drons: 0,
+//      thermalImagers: 0,
+//      id: 'ownCar2'
+//    }
+  ]
+//  public carState: any = new BehaviorSubject({
+//    car1: {
+//      drons: 0,
+//      thermalImagers: 0,
+//      top: '315px',
+//      left: '315px',
+//    },
+//    car2: {
+//      drons: 0,
+//      thermalImagers: 0,
+//      top: '408px',
+//      left: '520px',
+//    },
+//    ownCar1: {
+//      drons: 0,
+//      thermalImagers: 0
+//    },
+//    ownCar2: {
+//      drons: 0,
+//      thermalImagers: 0
+//    }
+//  })
 
   cityCenters = [
     {
-      name: 'Kyiv',
+      id: 'kv',
+      name: 'Київ',
       top: '275px',
       left: '790px',
       time: '2 дні'
     },
     {
-      name: 'Vinnytsia',
+      id: 'vn',
+      name: 'Вінниця',
       top: '275px',
       left: '640px',
       time: '1 день'
@@ -112,8 +148,20 @@ export class StoreService {
   }
 
   changeCarState(id: string, items: any) {
-    const carState = this.carState.value;
-    carState[id] = items;
-    this.carState.next(carState);
+    this.carState = this.carState.map((car: any) => {
+      if (car.id === id) {
+        car.drons = items.drons;
+        car.thermalImagers = items.thermalImagers;
+        return car;
+//        return {
+//          ...car,
+//          drons: items.frons,
+//          thermalImagers: items.thermalImagers
+//        }
+      }
+    })
+//    const carState = this.carState.value;
+//    carState[id] = items;
+//    this.carState.next(carState);
   }
 }

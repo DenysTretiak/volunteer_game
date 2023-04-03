@@ -24,14 +24,10 @@
       Відправити товар
 
       <ul>
-        <li class="cart-list-item">
-          <span>Пункт призначення</span>
-          <span>Час доставки</span>
-        </li>
         <li *ngFor="let destination of destinations" class="cart-list-item">
-          <span>{{destination.name}}</span>
-          <span>{{destination.time}}</span>
-<!--          <h2>{{item.count}}</h2>-->
+          <span> {{destination.name}}</span>
+          <span> Час доставки: {{destination.time}}</span>
+          <button mat-raised-button (click)="sendCar(destination)">Відправити</button>
         </li>
       </ul>
     </mat-card>
