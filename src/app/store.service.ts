@@ -23,10 +23,12 @@ export class StoreService {
     },
     {
       name: '72 ОМБ, Донецький напрямок',
-      items: '1 Дрони',
+      items: '2 Дрони',
       time: '5 днів'
     },
   ]
+
+  public finishedRequests: any = [];
 
   public money: BehaviorSubject<any> = new BehaviorSubject<any>(187000);
   public rating: BehaviorSubject<any> = new BehaviorSubject<any>(53000);
@@ -56,17 +58,17 @@ export class StoreService {
       type: 'car',
       id: 'car2',
       palace: 'hm'
-    }
-//    {
-//      drons: 0,
-//      thermalImagers: 0,
-//      id: 'ownCar1'
-//    },
-//    {
-//      drons: 0,
-//      thermalImagers: 0,
-//      id: 'ownCar2'
-//    }
+    },
+    {
+        url: './assets/own_car.png',
+        drons: 0,
+        thermalImagers: 0,
+        top: '360px',
+        left: '760px',
+        type: 'car',
+        id:'ownCar1',
+        palace: null
+      }
   ])
 
   cityCenters = [
@@ -90,6 +92,13 @@ export class StoreService {
       top: '315px',
       left: '315px',
       time: '1 день'
+    },
+    {
+      id: 'dn',
+      name: 'Донецька область',
+      top: '550px',
+      left: '1330px',
+      time: '1 день'
     }
   ]
   decreaseMoneySum(amount: number) {
@@ -101,6 +110,12 @@ export class StoreService {
   increaseDrons(count: number) {
     this.dronsCount.next(
       this.dronsCount.value + count
+    )
+  }
+
+  increaseRating(count: number) {
+    this.rating.next(
+      this.rating.value + count
     )
   }
 
@@ -156,5 +171,25 @@ export class StoreService {
       });
 
     this.carState.next(carState);
+  }
+
+  addNewCar() {
+    const carState = this.carState.value;
+    const newCar = {
+      url: './assets/own_car.png',
+      drons: 0,
+      thermalImagers: 0,
+      top: '310px',
+      left: '620px',
+      type: 'car',
+      id: 'ownCar2',
+    }
+    carState.push(newCar);
+    this.carState.next(carState);
+  }
+
+  addFinishedRequest() {
+    const finishedRequest: any = this.requests.pop();
+    this.finishedRequests.push(finishedRequest);
   }
 }

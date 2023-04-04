@@ -32,7 +32,7 @@ export class WebsiteDialogComponent {
       img: './assets/dron_autel_with_thermal_imager.png',
       name: 'Autel EVO II Dual',
       price: '30000',
-      time: 0,
+      time: 2,
       type: 'dron'
     },
     {

@@ -8,6 +8,7 @@ import {DAY_TIME_VALUE} from "../constants";
 import {CarDialogComponent} from "../car-dialog/car-dialog.component";
 import {DonatesDialogComponent} from "../donates-dialog/donates-dialog.component";
 import {SocialsDialogComponent} from "../socials-dialog/socials-dialog.component";
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-map-container',
@@ -17,34 +18,6 @@ import {SocialsDialogComponent} from "../socials-dialog/socials-dialog.component
 export class MapContainerComponent implements OnInit {
     iconsArray: any[] = [];
     items = [
-//      {
-//        url: './assets/car.png',
-//        top: '315px',
-//        left: '315px',
-//        type: 'car',
-//        id: 'car1'
-//      },
-//      {
-//        url: './assets/car.png',
-//        top: '408px',
-//        left: '520px',
-//        type: 'car',
-//        id: 'car2'
-//      },
-//      {
-//        url: './assets/own_car.png',
-//        top: '360px',
-//        left: '760px',
-//        type: 'car',
-//        id:'ownCar1'
-//      },
-//      {
-//        url: './assets/own_car.png',
-//        top: '310px',
-//        left: '620px',
-//        type: 'car',
-//        id: 'ownCar2'
-//      },
       {
         url: './assets/central_base.png',
         top: '400px',
@@ -124,7 +97,8 @@ export class MapContainerComponent implements OnInit {
       panelClass: 'position',
       width: '1000px',
       data: {
-        requests: this.getRequests()
+        requests: this.getRequests(),
+        finishedRequests: this.getFinishedRequests()
       }
     });
   }
@@ -147,6 +121,21 @@ export class MapContainerComponent implements OnInit {
       width: '500px',
       data: {
         id
+      }
+    }).afterClosed().subscribe(res => {
+      if(res?.isFinalDestination) {
+        this.dialog.open(SuccessDialogComponent, {
+          position: {
+            top: '200px',
+            left: '400px'
+          },
+          panelClass: 'position',
+          width: '750px'
+        })
+
+        this.storeService.addNewCar();
+        this.storeService.addFinishedRequest();
+        this.storeService.increaseRating(3000);
       }
     });
   }
@@ -190,6 +179,10 @@ export class MapContainerComponent implements OnInit {
 
   getRequests() {
       return this.storeService.requests;
+  }
+
+  getFinishedRequests() {
+      return this.storeService.finishedRequests;
   }
 
   getRequestsNumber() {

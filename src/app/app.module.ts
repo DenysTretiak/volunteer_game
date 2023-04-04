@@ -56,6 +56,7 @@ import { TemporaryBaseComponent } from './temporary-base/temporary-base.componen
 import { CarDialogComponent } from './car-dialog/car-dialog.component';
 import { DonatesDialogComponent } from './donates-dialog/donates-dialog.component';
 import { SocialsDialogComponent } from './socials-dialog/socials-dialog.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { SocialsDialogComponent } from './socials-dialog/socials-dialog.componen
     TemporaryBaseComponent,
     CarDialogComponent,
     DonatesDialogComponent,
-    SocialsDialogComponent
+    SocialsDialogComponent,
+    SuccessDialogComponent
   ],
   imports: [
     BrowserModule,

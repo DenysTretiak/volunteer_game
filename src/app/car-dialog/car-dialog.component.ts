@@ -48,6 +48,10 @@ export class CarDialogComponent implements OnInit {
 
   openLoadCard() {
     this.isLoadCardOpen = true;
+    if(this.place === 'vn') {
+      this.baseDronCount = this.centralBaseDronCount;
+      this.baseThermalImagersCount = this.centralBaseThermalImagersCount;
+    }
   }
 
   openSendItems() {
@@ -73,7 +77,13 @@ export class CarDialogComponent implements OnInit {
         left: destination.left,
         place: destination.id
       });
-      
+
+      if (destination.id == 'dn') {
+        this.dialogRef.close({
+          isFinalDestination: true
+        });
+        return;
+      }
 
       this.dialogRef.close();
   }
