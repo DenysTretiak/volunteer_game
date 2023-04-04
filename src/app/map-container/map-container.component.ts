@@ -7,6 +7,7 @@ import {TemporaryBaseComponent} from "../temporary-base/temporary-base.component
 import {DAY_TIME_VALUE} from "../constants";
 import {CarDialogComponent} from "../car-dialog/car-dialog.component";
 import {DonatesDialogComponent} from "../donates-dialog/donates-dialog.component";
+import {SocialsDialogComponent} from "../socials-dialog/socials-dialog.component";
 
 @Component({
   selector: 'app-map-container',
@@ -47,7 +48,8 @@ export class MapContainerComponent implements OnInit {
       {
         url: './assets/central_base.png',
         top: '400px',
-        left: '635px'
+        left: '635px',
+        type: 'central_base'
       },
       {
         url: './assets/temporary_base.png',
@@ -79,16 +81,16 @@ export class MapContainerComponent implements OnInit {
     imageUrl = "url('./assets/ua-04.png')";
     currentDay: number = 1;
 
-    constructor(public dialog: MatDialog, private storeService: StoreService) {
-
-    }
+    constructor(public dialog: MatDialog, public storeService: StoreService) {}
 
     ngOnInit() {
       setInterval(() => {
         this.currentDay += 1;
       }, DAY_TIME_VALUE);
 
-      this.iconsArray = [...this.items, ...this.storeService.carState]
+      this.storeService.carState.subscribe(carState => {
+        this.iconsArray = [...this.items, ...carState]
+      })
     }
 
   websiteClicked() {
@@ -128,8 +130,8 @@ export class MapContainerComponent implements OnInit {
   }
 
   onMapIconClicked(type: any, id: any) {
-      if(type === 'temporary_base') {
-          this.onTemporaryBaseClick();
+      if (type === 'temporary_base' || type === 'central_base') {
+          this.onTemporaryBaseClick(type);
       } else if (type === 'car') {
         this.onCarClick(id);
       }
@@ -149,7 +151,20 @@ export class MapContainerComponent implements OnInit {
     });
   }
 
-  onTemporaryBaseClick() {
+  onTemporaryBaseClick(type: string) {
+      let data;
+      if (type === 'central_base') {
+        data = {
+          dronsCount: this.storeService.dronsCountCentralStorage.value,
+          thermalImagers: this.storeService.thermalImagerCountCentralStorage.value,
+          isCentralBase: true
+        }
+      } else {
+        data = {
+          dronsCount: this.storeService.dronsCount.value,
+          thermalImagers: this.storeService.thermalImagerCount.value
+        }
+      }
       this.dialog.open(TemporaryBaseComponent, {
         position: {
           top: '200px',
@@ -157,11 +172,19 @@ export class MapContainerComponent implements OnInit {
         },
         panelClass: 'position',
         width: '300px',
-        data: {
-          dronsCount: this.storeService.dronsCount.value,
-          thermalImagers: this.storeService.thermalImagerCount.value
-        }
+        data
       });
+  }
+
+  socialsClicked() {
+    this.dialog.open(SocialsDialogComponent, {
+      position: {
+        top: '150px',
+        left: '400px'
+      },
+      panelClass: 'position',
+      width: '400px'
+    });
   }
 
 

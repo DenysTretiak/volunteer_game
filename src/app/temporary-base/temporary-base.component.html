@@ -1,17 +1,13 @@
 <h2 mat-dialog-title>Кількість спорядження на складі:</h2>
 
-<!--<div *ngIf="data.dronsCount | async as dronCounts">-->
-<!--  <div *ngIf="data.thermalImagers | async as thermalImagers">-->
 <div mat-dialog-content>
 <h3>Дронів: {{data.dronsCount}}</h3>
 <h3>Тепловізорів: {{data.thermalImagers}}</h3>
 
-<div class="finished-requests">
+<div class="finished-requests" *ngIf="!data.isCentralBase">
   <h2>Прибуті замовлення на склад:</h2>
   <mat-card class="orders-item" *ngFor="let order of finishedOrders">
       <span>{{order}} </span>
   </mat-card>
 </div>
-<!--    </div>-->
-<!--  </div>-->
 </div>

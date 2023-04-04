@@ -8,6 +8,7 @@
   <div class="flex">
     <button mat-raised-button (click)="openLoadCard()">Завантажити товар</button>
     <button mat-raised-button (click)="openSendItems()">Доставити товар</button>
+    <button mat-raised-button (click)="openLoadToStorage()">Відвантажити на склад</button>
   </div>
 
   <div *ngIf="isLoadCardOpen">
@@ -16,6 +17,15 @@
       <span>{{baseDronCount + ' дрони'}}</span>
       <span>{{baseThermalImagersCount + ' тепловізори'}}</span>
       <button mat-raised-button class="load-button" (click)="onLoadButtonClick()">Завантажити</button>
+    </mat-card>
+  </div>
+
+  <div *ngIf="isLoadToStorageOpen">
+    <mat-card class="load-section">
+      Кількість товару на складі:
+      <span>{{centralBaseDronCount + ' дрони'}}</span>
+      <span>{{centralBaseThermalImagersCount + ' тепловізори'}}</span>
+      <button mat-raised-button class="load-button" (click)="onLoadToStorageButtonClick()">Відвантажити</button>
     </mat-card>
   </div>
 

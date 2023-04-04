@@ -1,16 +1,18 @@
 <img class="map-container" src="./assets/map.png" width="1818px" height="1000px">
 
-<div class="icon-link" *ngFor="let item of iconsArray">
-  <a  (click)="onMapIconClicked(item.type, item.id)">
-    <app-car [item]="item"></app-car>
-  </a>
-
+<div *ngIf="storeService.carState | async">
+  <div class="icon-link" *ngFor="let item of iconsArray">
+    <a  (click)="onMapIconClicked(item.type, item.id)">
+      <app-car [item]="item"></app-car>
+    </a>
+  </div>
 </div>
+
 
 <app-monay-rating></app-monay-rating>
 
 <div class="current-day">
-  <span> {{currentDay  + 'день'}} </span>
+  <span> {{currentDay  + ' день'}} </span>
 </div>
 <div class="messages-website">
   <a class="donate" (click)="donatesClicked()">
@@ -19,7 +21,7 @@
   <a class="website" (click)="websiteClicked()" >
     <img src="./assets/website.png" alt="">
   </a>
-  <a >
+  <a (click)="socialsClicked()">
     <img src="./assets/messages.png" alt="">
   </a>
 </div>

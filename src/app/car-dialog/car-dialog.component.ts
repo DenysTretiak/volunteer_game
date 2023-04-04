@@ -1,5 +1,5 @@
 import { ApplicationRef, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {StoreService} from "../store.service";
 
 @Component({
@@ -15,23 +15,29 @@ export class CarDialogComponent implements OnInit {
   baseDronCount = 0;
   baseThermalImagersCount = 0;
   destinations: any;
+  isLoadToStorageOpen: boolean = false;
+  centralBaseDronCount = 0;
+  centralBaseThermalImagersCount = 0;
+
   constructor(
     private storeService: StoreService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private changeDetectorRef: ChangeDetectorRef,
-    private applicationRef: ApplicationRef
+    private applicationRef: ApplicationRef,
+    private dialogRef: MatDialogRef<any>
   ) {
   }
 
   ngOnInit() {
     this.storeService.dronsCount.subscribe(dronsCount => this.baseDronCount = dronsCount);
     this.storeService.thermalImagerCount.subscribe(thermalImagersCount => this.baseThermalImagersCount = thermalImagersCount);
-//    this.storeService.carState.subscribe((carState: any) => {
-//      this.carDrons = carState[this.data.id].drons;
-//      this.carThermalImagers = carState[this.data.id].thermalImagers;
-//    })
-    this.carDrons = this.storeService.carState.find((car: any) => car.id === this.data.id)?.drons;
-    this.carThermalImagers = this.storeService.carState.find((car: any) => car.id === this.data.id)?.thermalImagers;
+    this.storeService.carState.subscribe((carState: any) => {
+      this.carDrons = carState.find((car: any) => car.id === this.data.id)?.drons;
+      this.carThermalImagers = carState.find((car: any) => car.id === this.data.id)?.thermalImagers;
+    })
+    this.storeService.dronsCountCentralStorage.subscribe(dronsCount => this.centralBaseDronCount = dronsCount);
+    this.storeService.thermalImagerCountCentralStorage.subscribe(thermalImagersCount => this.centralBaseThermalImagersCount = thermalImagersCount);
+
     this.destinations = this.storeService.cityCenters;
   }
 
@@ -41,6 +47,10 @@ export class CarDialogComponent implements OnInit {
 
   openSendItems() {
     this.isSendItemsOpen = true;
+  }
+
+  openLoadToStorage() {
+    this.isLoadToStorageOpen = true;
   }
 
   onLoadButtonClick() {
@@ -53,6 +63,29 @@ export class CarDialogComponent implements OnInit {
   }
 
   sendCar(destination: any) {
+      this.storeService.changeCarState(this.data.id, {
+        top: destination.top,
+        left: destination.left
+      });
 
+      this.dialogRef.close();
+  }
+
+  onLoadToStorageButtonClick() {
+    this.storeService.increaseDronsCentralStorage(this.carDrons);
+    this.storeService.increaseThermalImagersCentralStorage(this.carThermalImagers);
+    const top = this.storeService.cityCenters.find(cityCenter => cityCenter.id = 'kv')?.top;
+    const left = this.storeService.cityCenters.find(cityCenter => cityCenter.id = 'kv')?.left;
+    this.storeService.changeCarState(this.data.id, {
+      top,
+      left
+    });
+    this.resetCarItems();
+    this.dialogRef.close();
+  }
+
+  resetCarItems() {
+    this.carDrons = 0;
+    this.carThermalImagers = 0;
   }
 }
