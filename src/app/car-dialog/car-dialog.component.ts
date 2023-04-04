@@ -18,6 +18,7 @@ export class CarDialogComponent implements OnInit {
   isLoadToStorageOpen: boolean = false;
   centralBaseDronCount = 0;
   centralBaseThermalImagersCount = 0;
+  place: string = '';
 
   constructor(
     private storeService: StoreService,
@@ -32,8 +33,12 @@ export class CarDialogComponent implements OnInit {
     this.storeService.dronsCount.subscribe(dronsCount => this.baseDronCount = dronsCount);
     this.storeService.thermalImagerCount.subscribe(thermalImagersCount => this.baseThermalImagersCount = thermalImagersCount);
     this.storeService.carState.subscribe((carState: any) => {
-      this.carDrons = carState.find((car: any) => car.id === this.data.id)?.drons;
-      this.carThermalImagers = carState.find((car: any) => car.id === this.data.id)?.thermalImagers;
+      const car = carState.find((car: any) => car.id === this.data.id);
+      if (car) {
+        this.carDrons = car.drons;
+        this.carThermalImagers = car.thermalImagers;
+        this.place = car.place;
+      }
     })
     this.storeService.dronsCountCentralStorage.subscribe(dronsCount => this.centralBaseDronCount = dronsCount);
     this.storeService.thermalImagerCountCentralStorage.subscribe(thermalImagersCount => this.centralBaseThermalImagersCount = thermalImagersCount);
@@ -65,8 +70,10 @@ export class CarDialogComponent implements OnInit {
   sendCar(destination: any) {
       this.storeService.changeCarState(this.data.id, {
         top: destination.top,
-        left: destination.left
+        left: destination.left,
+        place: destination.id
       });
+      
 
       this.dialogRef.close();
   }

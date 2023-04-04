@@ -45,6 +45,7 @@ export class StoreService {
       left: '315px',
       id: 'car1',
       type: 'car',
+      place: 'lv'
     },
     {
       url: './assets/car.png',
@@ -53,7 +54,8 @@ export class StoreService {
       top: '408px',
       left: '520px',
       type: 'car',
-      id: 'car2'
+      id: 'car2',
+      palace: 'hm'
     }
 //    {
 //      drons: 0,
@@ -147,6 +149,7 @@ export class StoreService {
           car.thermalImagers = items.thermalImagers || car.thermalImagers;
           car.top = items.top || car.top;
           car.left = items.left || car.left;
+          car.place = items.place || car.place;
         }
 
         return car;
